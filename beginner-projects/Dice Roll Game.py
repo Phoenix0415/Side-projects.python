@@ -1,5 +1,5 @@
 '''
-Dice Roll Generator Program:
+Dice Roll Game Program:
 -------------------------------------------------------------
 This program simulates the rolling of one or two dice.
 1. display a welcome message.
