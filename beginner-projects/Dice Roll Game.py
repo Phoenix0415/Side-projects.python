@@ -99,7 +99,7 @@ def roll_dice():
                -------
     ''')
     # add a delay
-    time.sleep(1)  # Pauses the execution for 2 seconds.
+    time.sleep(1)  # Pauses the execution for 1 seconds.
 
 
 if __name__ == '__main__': 
