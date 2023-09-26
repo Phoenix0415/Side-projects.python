@@ -17,11 +17,11 @@ This program simulates the rolling of one or two dice.
 To Do:
     - Add a message to display the total number and highest number of rolls for each game.
     
-    - Add a mode to choose to compete against the computer.
+    - Add a mode that allows the user to compete against the computer.
         - The computer should roll the dice after the user.
         - The computer should win if it gets a higher total value.
 
-    - Add a mode to choose to compete against another player.
+    - Add a mode that allows the user to compete against another player.
         - ask for the number of players, and then ask for the name of each player.
 '''
 
@@ -47,7 +47,7 @@ def roll_dice():
     max_val = 6  # Maximum value of a die.
     roll_again = 'y'  # Initial value to enter the while loop.
 
-    # add a welcome message
+    # 1. start the game: display a welcome message
     print('Welcome to the Dice Rolling Simulator!')
     # draw a dice with 5 dot
     print('''
@@ -61,33 +61,42 @@ def roll_dice():
     # add a delay
     time.sleep(2)  # Pauses the execution for 2 seconds.
 
+    # 2. ask the user how many dice they want to roll
     while roll_again.lower() == 'yes' or roll_again.lower() == 'y':  # Continues rolling until user decides to exit.
+        
+        # 3. clear the screen and call the `num_die` function to get the number of dice to roll
         os.system('cls' if os.name == 'nt' else 'clear')  # Clears the console before each roll. 'cls' for windows, 'clear' for mac/linux. os.name is used to check the name of the operating system.
         amount = num_die()  # Calls the num_die function to get the number of dice to roll.
 
-        if amount == '2' or amount == 'two':  # If two dice are to be rolled.
+        # 4. roll the dice and display the result
+        # If two dice are to be rolled.
+        if amount == '2' or amount == 'two':  
             print('Rolling the dice...')
             time.sleep(2) # Pauses the execution for 2 seconds. 
             dice_1 = random.randint(min_val, max_val)  # Rolls the first die.
             dice_2 = random.randint(min_val, max_val)  # Rolls the second die.
 
+            # Prints the values of the two dice.
             print('The values are:')
             print('Dice One: ', dice_1)
             print('Dice Two: ', dice_2)
-            print('Total value: ', dice_1 + dice_2)  # Prints the total value of two dice.
+            print('Total value: ', dice_1 + dice_2) 
 
+            # 5. ask the user if they want to roll again and store the response in the `roll_again` variable
             roll_again = input('Roll Again? (y/n)')
 
-        else:  # If one die is to be rolled.
+        # If one die is to be rolled.
+        else:  
             print('Rolling the die...') # Prints the message.
             time.sleep(2) # Pauses the execution for 2 seconds. 
             dice_1 = random.randint(min_val, max_val)  # Rolls the die.
 
             print(f'The value is: {dice_1}')  # Prints the value of the die.
 
+            # 5. ask the user if they want to roll again and store the response in the `roll_again` variable
             roll_again = input('Roll Again? (y/n) ')
 
-    # clear the screen and print a goodbye message
+    # 6. if the user decides to exit, display a goodbye message
     os.system('cls' if os.name == 'nt' else 'clear')  # Clears the console before exiting the program.
     print('Thanks for playing!')  
     # draw a dice with 5 dot and a big smile
