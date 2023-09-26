@@ -173,6 +173,6 @@ def calculator():
         else:
             print('Sorry, invalid character')
 
-
-if __name__ == '__main__':  # Calls the main calculator function.
+# The following line of code is executed only if the file is run directly.
+if __name__ == '__main__':  
     calculator() # Calls the main calculator function.
