@@ -11,7 +11,7 @@ This program simulates the rolling of one or two dice.
     - Depending on the user's choice, one or two dice are rolled, and the result is displayed.
     - The user is then asked if they want to roll again.
     - The console is cleared before each roll.
-    - A goodbye message is displayed when the user exits the program.
+5. A goodbye message is displayed when the user exits the program.
 
 -------------------------------------------------------------
 To Do:
@@ -110,6 +110,6 @@ def roll_dice():
     # add a delay
     time.sleep(1)  # Pauses the execution for 1 seconds.
 
-
+# This conditional statement checks if the program is run directly or imported.
 if __name__ == '__main__': 
     roll_dice()  # Calls the roll_dice function to initiate the process.
