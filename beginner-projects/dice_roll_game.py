@@ -17,11 +17,11 @@ This program simulates the rolling of one or two dice.
 To Do:
     - Add a message to display the total number and highest number of rolls for each game.
     
-    - Add a mode that allows the user to compete against the computer.
+    - 'Computer vs. Player Mode': Add a mode that allows the user to compete against the computer.
         - The computer should roll the dice after the user.
         - The computer should win if it gets a higher total value.
 
-    - Add a mode that allows the user to compete against another player.
+    - 'Multiplayer Mode': Add a mode that allows the user to compete against another player.
         - ask for the number of players, and then ask for the name of each player.
 '''
 
@@ -34,7 +34,7 @@ def num_die():
     while True:
         try:
             num_dice = input('Number of dice(1 or 2)? ')
-            valid_responses = ['1', 'one', 'two', '2']
+            valid_responses = ['1','2']
             if num_dice not in valid_responses:
                 raise ValueError('1 or 2 only')  # Raises a ValueError if input is invalid.
             else:
@@ -45,6 +45,11 @@ def num_die():
 def roll_dice():
     min_val = 1  # Minimum value of a die.
     max_val = 6  # Maximum value of a die.
+
+    # keep track of the highest number and total number of rolls for each game
+    highest_number = 0
+    total_number_of_rolls = 0
+
     roll_again = 'y'  # Initial value to enter the while loop.
 
     # 1. start the game: display a welcome message
@@ -62,11 +67,13 @@ def roll_dice():
     time.sleep(2)  # Pauses the execution for 2 seconds.
 
     # 2. ask the user how many dice they want to roll
-    while roll_again.lower() == 'yes' or roll_again.lower() == 'y':  # Continues rolling until user decides to exit.
+    while roll_again.lower() in ['yes', 'y']:  # Continues rolling until user decides to exit.
         
         # 3. clear the screen and call the `num_die` function to get the number of dice to roll
         os.system('cls' if os.name == 'nt' else 'clear')  # Clears the console before each roll. 'cls' for windows, 'clear' for mac/linux. os.name is used to check the name of the operating system.
         amount = num_die()  # Calls the num_die function to get the number of dice to roll.
+        #keep track of the highest number and total number of rolls for each game
+        total_number_of_rolls += 1
 
         # 4. roll the dice and display the result
         # If two dice are to be rolled.
@@ -76,11 +83,15 @@ def roll_dice():
             dice_1 = random.randint(min_val, max_val)  # Rolls the first die.
             dice_2 = random.randint(min_val, max_val)  # Rolls the second die.
 
+            #keep track of the highest number
+            if dice_1 > highest_number:
+                highest_number = dice_1 
+
             # Prints the values of the two dice.
             print('The values are:')
             print('Dice One: ', dice_1)
             print('Dice Two: ', dice_2)
-            print('Total value: ', dice_1 + dice_2) 
+            print('Total value: ', dice_1 + dice_2)
 
             # 5. ask the user if they want to roll again and store the response in the `roll_again` variable
             roll_again = input('Roll Again? (y/n)')
@@ -91,6 +102,10 @@ def roll_dice():
             time.sleep(2) # Pauses the execution for 2 seconds. 
             dice_1 = random.randint(min_val, max_val)  # Rolls the die.
 
+            #keep track of the highest number
+            if dice_1 > highest_number:
+                highest_number = dice_1
+
             print(f'The value is: {dice_1}')  # Prints the value of the die.
 
             # 5. ask the user if they want to roll again and store the response in the `roll_again` variable
@@ -98,7 +113,11 @@ def roll_dice():
 
     # 6. if the user decides to exit, display a goodbye message
     os.system('cls' if os.name == 'nt' else 'clear')  # Clears the console before exiting the program.
+    
     print('Thanks for playing!')  
+    # display the highest number and total number of rolls for each game
+    print(f"Highest number for each game is: {highest_number}")
+    print(f"Total number of rolls for each game is: {total_number_of_rolls}")
     # draw a dice with 5 dot and a big smile
     print('''
                _______
